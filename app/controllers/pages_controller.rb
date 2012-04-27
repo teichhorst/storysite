@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-   
+   @pages = Page.paginate(:page => params[:page])
   end
 
   def show
@@ -24,6 +24,12 @@ class PagesController < ApplicationController
       flash[:error] = "The page must have content! "
       redirect_to @page.story
     end
+  end
+
+  def destroy
+    Page.find(params[:id]).destroy
+    flash[:success] = "Page deleted."
+    redirect_to story
   end
 
 end

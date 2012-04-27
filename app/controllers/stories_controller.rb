@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
   end
   
   def index
-   @stories = Story.all
+   
    @stories = Story.paginate(:page => params[:page])
   end
   
