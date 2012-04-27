@@ -1,0 +1,10 @@
+<%= provide(:title, 'All Stories') %>
+<h1>Unfinished Stories</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<%= render @stories.all %>
+</ul>
+
+<%= will_paginate %>

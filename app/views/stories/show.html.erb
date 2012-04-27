@@ -1,0 +1,30 @@
+<% provide(:title, @story.story_title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      
+      <h1>
+        
+        <%= @story.story_title %>
+      </h1>
+      Author: <%= link_to @story.user.name, @story.user  %>
+      
+      <br><br>
+      <%= link_to "Create a new page", new_story_page_path(@story) %>
+    </section>
+    
+  </aside>
+  <div class="span8">
+    <% if @story.pages.any? %>
+      <h3>Pages (<%= @story.pages.count %>)</h3>
+      <ol class="stories">
+        <%= render @story.pages %>
+      </ol>
+    <% end %>
+    
+    
+  </div>
+  
+  <%= render 'pages/form', :page => @story.pages.new %>
+
+</div>

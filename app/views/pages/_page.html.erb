@@ -1,0 +1,15 @@
+<li>
+	
+	<div>
+	<%=  page.pagecontent %>
+	
+	<% if signed_in? && current_user == @user %>
+		| <%= link_to "delete", page, :method => :delete, :confirm => "Are you sure?" %>
+	<% end %>
+	</div>
+	
+	<div>
+		<%= page.user.name %>
+		</div>
+	
+</li>

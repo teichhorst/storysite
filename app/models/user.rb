@@ -12,13 +12,20 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
+  has_many :stories
+  has_many :pages
   before_save :create_remember_token
   
-  validates :name, presence: true, length: {minimum: 1, maximum: 50}
+  validates :name, :presence => true, :length => {:minimum => 1, :maximum => 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :password, length: {minimum: 6, maximum: 40}
-  validates :password_confirmation, presence: true
+  validates :email, :presence => true, :format => { :with => VALID_EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }
+  validates :password, :length => {:minimum => 6, :maximum => 40}
+  validates :password_confirmation, :presence => true
+  
+  def feed
+    #this is preliminary.
+    Story.where("user_id = ?", id)
+  end
   
   private
   

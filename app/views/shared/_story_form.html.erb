@@ -1,0 +1,7 @@
+<%= form_for(@story_form) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.text_area :story_title, :placeholder => "Create a new story by entering the title..." %>
+  </div>
+  <%= f.submit "Create Story", :class => "btn btn-large btn-primary" %>
+<% end %>

@@ -6,6 +6,19 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <% if signed_in? && current_user == @user %>
+      <%= render 'shared/story_form'%>
+      <% end %>
     </section>
+    
   </aside>
+  <div class="span8">
+    <% if @user.stories.any? %>
+      <h3>Stories (<%= @user.stories.count %>)</h3>
+      <ol class="stories">
+        <%= render @user.stories %>
+      </ol>
+      <%= will_paginate @story %>
+    <% end %>
+  </div>
 </div>
