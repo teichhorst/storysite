@@ -2,6 +2,7 @@ class PagesController < ApplicationController
 
   def index
    @pages = Page.paginate(:page => params[:page])
+   
   end
 
   def show
@@ -27,9 +28,9 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    Page.find(params[:id]).destroy
+    @story.page.destroy
     flash[:success] = "Page deleted."
-    redirect_to story
+    redirect_to @story
   end
 
 end

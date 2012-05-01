@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @story = Story.paginate(:page => params[:page])
-    @page = Page.paginate(:page => params[:page])
+    @stories = @user.stories
+    @stories = @stories.paginate(:page => params[:page]).per_page(10)
     @story_form = Story.new
     @current_user = current_user
   end
