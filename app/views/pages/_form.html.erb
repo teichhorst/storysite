@@ -1,7 +1,7 @@
 <%= form_for [page.story,page] do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <div class="field">
+  <div class="field page_form">
     <%= f.text_area :pagecontent, :placeholder => "Create a page for this story..." %>
-  </div>
+  </div><br>
   <%= f.submit "Create Page", :class => "btn btn-large btn-primary" %>
 <% end %>

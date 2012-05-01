@@ -1,0 +1,21 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  
+    
+      <h1>
+        <%= @user.name %>
+      </h1>
+      
+  
+</div>
+    
+    <div>
+    <% if @user.pages.any? %>
+      <h3>Pages (<%= @user.pages.count %>)</h3>
+      
+      <ul class="pages_list">
+        <%= render @pages %>
+      </ul>
+      <%= will_paginate @pages %>
+    <% end %>
+  </div>

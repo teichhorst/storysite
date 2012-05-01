@@ -1,15 +1,41 @@
 <li>
-	
-	<div>
-	<%=  page.pagecontent %>
-	
-	<% if signed_in? && current_user == @user %>
-		| <%= link_to "delete", page, :method => :delete, :confirm => "Are you sure?" %>
-	<% end %>
+	<div class="container">
+	<div class="span4 pages_userlist">
+		<ol class="pages_list">
+				
+				
+				<% if (defined?(page.user.name)).nil? %>
+				<li>
+				<span class="user_not_found">Author Unknown</span>
+				</li>
+				<% else %>
+				<li>
+				<%= link_to page.user.name, page.user %>
+				</li>
+				<% end %>
+				
+				<li>
+				Written <%= time_ago_in_words(page.created_at)%> ago
+				
+				<% if signed_in? && current_user == page.user && !page.story.finished? == false or current_user == page.story.user && !page.story.finished? %>
+		 		| <%= link_to "delete", :method => :delete, :confirm => "Are you sure?" %>
+				<% end %>
+				</li>
+		
+		</ol>
+			
+		
+		
+		
 	</div>
 	
-	<div>
-		<%= page.user.name %>
-		</div>
+	<div class="span7 pages">
+	<%=  simple_format(page.pagecontent) %>
+	
+	</div>
+	
+	</div>
+	
+	
 	
 </li>
