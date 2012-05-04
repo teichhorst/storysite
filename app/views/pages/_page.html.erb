@@ -18,7 +18,7 @@
 				Written <%= time_ago_in_words(page.created_at)%> ago
 				
 				<% if signed_in? && current_user == page.user or current_user == page.story.user && page.story.finished == false or current_user.admin? %>
-		 		| <%= link_to "delete", :method => :delete, :confirm => "Are you sure?" %>
+		 		| <%= link_to "delete", @page, :controller => :pages, :action => :destroy, :confirm => "Are you sure?" %>
 				<% end %>
 				</li>
 		
